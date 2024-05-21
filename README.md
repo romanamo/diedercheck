@@ -1,4 +1,4 @@
-# diedercheck
+# dihedralcheck
 Implementation of checksum algorithms based on the dihedral group for the serial numbers of the Deutsche Mark (DM).
 
 ## How it works
