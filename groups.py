@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Generic, TypeVar, override
+from typing import List, Generic, TypeVar
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from functools import reduce
@@ -99,19 +99,15 @@ class Dihedral(Group[Permutation]):
             "details": ["e"] + [f"d{i}" for i in range(n-1)] + ["s"] + [f"sd{i}" for i in range(n-1)]
         }
 
-    @override
     def neutral(self) -> Permutation:
         return Permutation.identity(self.n)
     
-    @override
     def inverse(self, a: Permutation) -> Permutation:
         return a.inverse()
     
-    @override
     def binary(self, a: Permutation, b: Permutation) -> Permutation:
         return a * b
-    
-    @override
+
     def table(self, naming: str = "details") -> List[List[str | int]]:
         """Generates a cayley table.
 
@@ -129,7 +125,6 @@ class Dihedral(Group[Permutation]):
         return [
             [self.schemes[naming][items.index(items[i] * items[j])] for j in range(len(items))] for i in range(len(items))]
     
-    @override
     def elements(self) -> List[T]:
         flip = Permutation(list(range(self.n-1, -1, -1)))
         rotations = [Permutation([(i+j) % self.n for j in range(self.n)]) for i in range(self.n)]
